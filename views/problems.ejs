@@ -1,0 +1,68 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Problem Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>PROBLEM PAGE</h1>
+    <form action="/problems" method="POST">
+      <textarea name="code" id="code"></textarea>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ACE in Action</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style type="text/css" media="screen">
+      #editor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <script>
+    function temp() {
+      entered_code = editor.getValue();
+      $.ajax({
+        url: "/problems",
+        dataType: "text",
+        type: "post",
+        contentType: "application/x-www-form-urlencoded",
+        data: { code: entered_code },
+        error: function(jqXhr, textStatus, errorThrown) {
+          console.log(errorThrown);
+        },
+        success: function(data, textStatus, jqXHR) {
+          data = JSON.parse(data);
+
+          //   window.location.href = data.redirect;
+        }
+      });
+    }
+  </script>
+  <body>
+    <div id="editor"></div>
+    <button type="submit" value="Submit" onclick="temp()">Submit</button>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script>
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/c_cpp");
+    </script>
+  </body>
+</html>
