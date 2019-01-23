@@ -6,7 +6,10 @@ const expressSession = require("express-session");
 const passport = require("./passport/index");
 const app = express();
 
-mongoose.connect("mongodb://localhost/onlinejudge");
+// mongoose.connect("mongodb://localhost/onlinejudge");
+mongoose.connect(
+  "mongodb://sudshek:birgunj69@ds121371.mlab.com:21371/online_judge"
+);
 
 app.set("view engine", "ejs");
 app.use(bodyParser.json()); // to parse the incoming http requests
