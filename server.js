@@ -6,7 +6,10 @@ const expressSession = require("express-session");
 const passport = require("./passport/index");
 const app = express();
 
-mongoose.connect("mongodb://localhost/onlinejudge");
+// mongoose.connect("mongodb://localhost/onlinejudge");
+mongoose.connect(
+  "mongodb://sudshek:birgunj69@ds121371.mlab.com:21371/online_judge"
+);
 
 app.set("view engine", "ejs");
 app.use(bodyParser.json()); // to parse the incoming http requests
@@ -26,10 +29,12 @@ app.use(passport.session());
 const home_route = require("./routes/homepage");
 const auth_route = require("./routes/auth");
 const problems_route = require("./routes/problems");
+const profile_route = require("./routes/profile");
 
 app.use(home_route);
 app.use("/auth", auth_route);
 app.use("/problems", problems_route);
+app.use("/profile", profile_route);
 
 const port = 3000;
 app.listen(port, () => {
