@@ -22,7 +22,7 @@ router.post("/signin", function(req, res, next) {
       }
       console.log("EXE");
       console.log(req.user);
-      return req, res.redirect("/users");
+      return req, res.redirect("/problems");
     });
   })(req, res);
 });

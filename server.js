@@ -25,9 +25,11 @@ app.use(passport.session());
 
 const home_route = require("./routes/homepage");
 const auth_route = require("./routes/auth");
+const problems_route = require("./routes/problems");
 
 app.use(home_route);
 app.use("/auth", auth_route);
+app.use("/problems", problems_route);
 
 const port = 3000;
 app.listen(port, () => {
